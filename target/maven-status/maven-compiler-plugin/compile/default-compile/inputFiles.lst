@@ -15,6 +15,7 @@ G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\service\Email
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\model\CartItem.java
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\security\FirebaseConfig.java
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\repository\PriceChangeLogRepository.java
+G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\config\WebConfig.java
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\controller\CustomErrorController.java
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\controller\GlobalController.java
 G:\MyWork\ecommerce-springboot\src\main\java\com\example\ecommerce\service\CartService.java

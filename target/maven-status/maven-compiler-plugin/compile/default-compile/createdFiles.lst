@@ -4,6 +4,7 @@ com\example\ecommerce\controller\OtpController.class
 com\example\ecommerce\controller\ProductController.class
 com\example\ecommerce\controller\AdminController.class
 com\example\ecommerce\model\ChatRequest.class
+com\example\ecommerce\config\WebConfig.class
 com\example\ecommerce\model\PriceHistory.class
 com\example\ecommerce\service\CartService.class
 com\example\ecommerce\model\Product.class
