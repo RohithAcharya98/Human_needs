@@ -23,7 +23,7 @@
 
     <form th:action="@{/search}" method="get" class="d-flex mx-auto w-50">
         <input name="keyword" type="text" class="form-control rounded-start" placeholder="Search Amazon-like products..." />
-        <button class="btn btn-warning rounded-end">Search</button>
+        <button class="btn btn-warning rounded-end" th:text="#{search}">Search</button>
     </form>
 	<form method="get" action="#" th:action="@{/}" class="ml-auto me-2">
 	  <select name="lang" onchange="this.form.submit()" class="form-select" style="width: 100px;">
@@ -36,8 +36,6 @@
 	    <option value="mr" th:selected="${#locale.language == 'mr'}">मराठी</option>
 	  </select>
 	</form>
-
-	
     <div class="ms-auto d-flex align-items-center">
     	<div class="text-white me-3 text-center" style="line-height: 1.2;">
 		    <a href="/returns" class="text-white text-decoration-none d-block">🧾Returns</a>
