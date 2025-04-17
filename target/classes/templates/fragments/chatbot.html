@@ -1,0 +1,13 @@
+<div th:fragment="chatbot">
+<div id="chatbot-btn" onclick="toggleChatbot()">💬</div>
+
+<!-- Chat Window -->
+<div id="chat-window">
+  <div id="chat-header">AI Assistant 🤖</div>
+  <div id="chat-messages"></div>
+  <div id="chat-input-area">
+    <input type="text" id="chat-input" placeholder="Type your message..." onkeydown="handleKey(event)">
+    <button onclick="sendMessage()">➤</button>
+  </div>
+</div>
+</div>

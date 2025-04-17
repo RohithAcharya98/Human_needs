@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a2e0d5b23f.js" crossorigin="anonymous"></script> <!-- For icons -->
+</head>
+<body class="login-page">
+<div class="overlay"></div>
+<div class="login-wrapper">
+    <div class="login-box glass">
+        <h2>Login</h2>
+
+        <div th:if="${param.error}">
+    		<p id="logout-msg" style="color: red;">Invalid email or password</p>
+		</div>
+		<div th:if="${param.logout}">
+		    <p id="logout-msg" style="color: green;">You have been logged out</p>
+		</div>
+
+
+        <form th:action="@{/login}" method="post">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                 <input type="email" name="username" placeholder="Email" required />
+                
+            </div>
+
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                 <input type="password" name="password" placeholder="Password" required />
+            </div>
+
+            <div class="options">
+                <label><input type="checkbox"> Remember me</label>
+                <a href="#">Forgot Password?</a>
+            </div>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
+</div>
+<hr class="my-3">
+<div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+    <span class="text-muted fs-6">New to <strong>HumanNeeds</strong>?</span>
+    <a href="/signup" class="create-account-btn d-inline-flex align-items-center text-white text-decoration-none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="white" class="bi bi-person-plus-fill me-2" viewBox="0 0 16 16">
+            <path d="M1 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H1Zm4-6a3 3 0 1 1 0-6 3 3 0 0 1 0 6Zm8.5-1a.5.5 0 0 1 .5.5V9h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V10h-1.5a.5.5 0 0 1 0-1H13V7.5a.5.5 0 0 1 .5-.5Z"/>
+        </svg>
+        CREATE ACCOUNT
+    </a>
+</div>
+<script src="/js/login.js" ></script>
+</body>
+
+</html>

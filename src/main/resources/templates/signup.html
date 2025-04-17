@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <title>Sign Up - HumanNeeds</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="stylesheet" href="/css/signup.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="form-container">
+    <!-- Add this above your form or wherever you want it to appear -->
+    <div class="flex justify-end items-center mb-4">
+        <span class="text-gray-600 mr-2">Already have an account?</span>
+        <a href="/login" class="btn btn-sm text-blue-500">Login</a>
+    </div>  
+    <div class="theme-toggle flex items-center gap-2 absolute top-5 right-7">
+        <span id="modeIcon" class="text-lg">🌞</span>
+        <span class="text-dark font-semibold" id="modeLabel">Light Mode</span>
+        <div class="toggle-switch" id="darkModeToggle" data-active="false">
+            <div class="circle"></div>
+        </div>
+    </div>
+</div>
+
+<!-- Toast -->
+<div class="toast-container fixed top-0 right-0 p-3">
+    <div class="toast text-red-500 border-0" role="alert" th:if="${error}" aria-live="assertive" aria-atomic="true" data-bs-delay="4000" id="errorToast">
+        <div class="flex">
+            <div class="toast-body" th:text="${error}">Something went wrong</div>
+            <button type="button" class="btn-close text-white ml-2" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+    </div>
+</div>
+
+<div class="flex flex-col md:flex-row">
+    <!-- Left Illustration -->
+    <div class="illustration-container text-center mb-4 md:w-1/2">
+        <img src="/images/svg1.svg" alt="Signup Illustration" class="w-full h-auto" />
+    </div>
+
+    <!-- Right Signup Form -->
+    <div class="form-container md:w-1/2">
+        <div class="card shadow-lg rounded-lg p-6 w-full max-w-lg mx-auto">
+            <h3 class="text-center text-gradient mb-4 text-2xl font-semibold">Create Your Account</h3>
+
+            <form th:action="@{/signup}" method="post" th:object="${user}">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
+
+                <!-- Fields as before, including phone, username, aadhaar, etc. -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{username}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Username">
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="relative mb-4">
+                        <input type="email" th:field="*{email}" id="email" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Email" required>
+                    </div>
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{aadhaar}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Aadhaar Number">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{pincode}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Pincode">
+                    </div>
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{address}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Address">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{city}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="City">
+                    </div>
+                    <div class="relative mb-4">
+                        <input type="text" th:field="*{state}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="State">
+                    </div>
+                </div>
+
+                <!-- Date of Birth -->
+                <div class="relative mb-6">
+                    <input type="date" th:field="*{dob}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Date of Birth">
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div class="relative mb-4">
+                        <input type="password" th:field="*{password}" id="password" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Password">
+                    </div>
+                    <div class="relative mb-4">
+                        <input type="password" th:field="*{confirmPassword}" id="confirmPassword" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Confirm Password">
+                    </div>
+                </div>
+
+                <!-- Show Password Toggle -->
+                <div class="flex items-center mb-4">
+                    <input type="checkbox" id="showPassword" class="mr-2">
+                    <label for="showPassword" class="text-gray-600">Show Password</label>
+                </div>
+
+                <!-- Send OTP Button -->
+                <div class="relative mb-6">
+                    <button type="button" id="sendOtpBtn" class="w-full py-3 bg-blue-500 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">Send OTP</button>
+                </div>
+
+                <!-- OTP Input -->
+                <div class="relative mb-6 hidden" id="otpField">
+                    <input type="text" id="otpInput" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Enter OTP" required>
+                </div>
+
+                <!-- Verify OTP Button -->
+                <div class="relative mb-6 hidden" id="verifyOtpBtnContainer">
+                    <button type="button" id="verifyOtpBtn" class="w-full py-3 bg-green-500 text-white font-semibold rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">Verify OTP</button>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="w-full py-3 bg-gradient-to-r from-blue-500 to-blue-700 text-white font-semibold rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 hidden" id="submitBtn">Sign Up</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Custom Script for signup -->
+<script type="module" src="/js/signup.js"></script>
+
+</body>
+</html>
