@@ -56,9 +56,9 @@
                     <div class="relative mb-4">
                         <input type="text" th:field="*{username}" class="form-input block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Username">
                     </div>
-                    <div class="form-floating mb-3">
-                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone Number" pattern="[0-9]{10}" required>
-                    </div>
+                   <div class="relative mb-3">
+					    <input type="tel" th:field="*{phone}" class="form-control block w-full px-4 py-2 rounded-lg border border-gray-300 focus:ring-2 focus:ring-blue-500" placeholder="Phone Number" pattern="[0-9]{10}" required>
+					</div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">

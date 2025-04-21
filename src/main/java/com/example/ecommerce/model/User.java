@@ -47,7 +47,9 @@ public class User {
 
     // Getters
     public Long getId() { return id; }
-    public String getName() { return phone; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+
     public String getEmail() { return email; }
     public String getPassword() { return password; }
     
@@ -63,7 +65,6 @@ public class User {
 
     // Setters
     public void setId(Long id) { this.id = id; }
-    public void setName(String phone) { this.phone = phone; }
     public void setEmail(String email) { this.email = email; }
     public void setPassword(String password) { this.password = password; }
     

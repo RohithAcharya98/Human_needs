@@ -31,6 +31,7 @@ public class CartItem {
         this.quantity = quantity;
     }
 
+    public boolean isSavedForLater() {return savedForLater;}
     public void setSavedForLater(boolean savedForLater) {this.savedForLater=savedForLater;}
     
     // Getters and Setters
@@ -45,4 +46,5 @@ public class CartItem {
 
     public int getQuantity() { return quantity; }
     public void setQuantity(int quantity) { this.quantity = quantity; }
+    
 } 

@@ -17,19 +17,23 @@ public class SecurityConfig {
 	@Bean
 	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 	    http
-	        .csrf(csrf -> csrf
-	            .ignoringRequestMatchers("/logout", "/send-otp", "/verify-otp", "/api/chat") // ✅ ignore CSRF for chat too
-	        )
-	        .authorizeHttpRequests(auth -> auth
-	            .requestMatchers("/api/chat").permitAll() // ✅ must be FIRST
-	            .requestMatchers("/", "/index", "/index.html", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
-	            .requestMatchers("/signup", "/register", "/signup/**").permitAll()
-	            .requestMatchers(HttpMethod.GET, "/signup").permitAll()
-	            .requestMatchers(HttpMethod.POST, "/signup").permitAll()
-	            .requestMatchers("/send-otp", "/verify-otp").permitAll()
-	            .requestMatchers("/add-to-cart", "/cart", "/checkout").permitAll()
-	            .anyRequest().authenticated()
-	        )
+	    .csrf(csrf -> csrf
+	    	    .ignoringRequestMatchers("/logout", "/send-otp", "/verify-otp", "/api/chat") // ✅ chat & otp free from CSRF
+	    	)
+	    	.authorizeHttpRequests(auth -> auth
+	    	    .requestMatchers("/api/chat").permitAll() // ✅ API-based chat allowed for all
+	    	    .requestMatchers("/", "/index", "/index.html", "/css/**", "/js/**", "/images/**", "/webjars/**").permitAll()
+	    	    .requestMatchers("/signup", "/register", "/signup/**").permitAll()
+	    	    .requestMatchers(HttpMethod.GET, "/signup").permitAll()
+	    	    .requestMatchers(HttpMethod.POST, "/signup").permitAll()
+	    	    .requestMatchers("/send-otp", "/verify-otp").permitAll()
+	    	    .requestMatchers(HttpMethod.GET, "/checkout").authenticated()
+	    	    .requestMatchers(HttpMethod.POST, "/checkout").authenticated() // ✅ POST /checkout should be secured
+	    	    .requestMatchers(HttpMethod.POST, "/checkout/save-address").authenticated()
+	    	    .requestMatchers("/cart", "/add-to-cart", "/order/confirmation").authenticated() // ✅ user-only pages
+	    	    .anyRequest().authenticated()
+	    	)
+
 	        .formLogin(form -> form
 	            .loginPage("/login")
 	            .defaultSuccessUrl("/", true)

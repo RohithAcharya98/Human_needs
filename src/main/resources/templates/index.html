@@ -7,6 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/css/shop.css}">
     <link rel="stylesheet" th:href="@{/css/chatbot.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    
 </head>
 <body style="font-family: 'Poppins', sans-serif;">
 
@@ -21,10 +23,10 @@
     </div>
     <a class="navbar-brand text-warning fw-bold" href="/">HumanNeeds</a>
 
-    <form th:action="@{/search}" method="get" class="d-flex mx-auto w-50">
-        <input name="keyword" type="text" class="form-control rounded-start" placeholder="Search Amazon-like products..." />
-        <button class="btn btn-warning rounded-end" th:text="#{search}">Search</button>
-    </form>
+    <form th:action="@{/search}" method="get" class="d-flex ml-1" style="width: 35%;">
+	    <input name="keyword" type="text" class="form-control rounded-start" placeholder="Search for products..." />
+	    <button class="btn btn-warning rounded-end" th:text="#{search}">Search</button>
+	</form>
 	<form method="get" action="#" th:action="@{/}" class="ml-auto me-2">
 	  <select name="lang" onchange="this.form.submit()" class="form-select" style="width: 100px;">
 	    <option value="en" th:selected="${#locale.language == 'en'}">English</option>
@@ -36,6 +38,23 @@
 	    <option value="mr" th:selected="${#locale.language == 'mr'}">मराठी</option>
 	  </select>
 	</form>
+	<form method="get" action="#" th:action="@{/profile}">
+		<div sec:authorize="isAuthenticated()" class="position-relative ms-3" id="profile-container">
+		    <!-- Avatar + Username (Profile Trigger) -->
+		    <div id="profileTrigger" class="d-flex align-items-center gap-2 text-white btn btn-outline-light btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="cursor: pointer;">
+		        <img src="/images/profile-avatar.png" alt="Profile" class="rounded-circle" width="32" height="32">
+		        <span th:text="${loggedInUsername}">Username</span>
+		    </div>
+		
+		    <!-- Dropdown Menu -->
+		    <ul id="profileDropdown" class="dropdown-menu dropdown-menu-end mt-2 shadow-sm bg-dark text-white animate__animated animate__fadeIn" aria-labelledby="profileDropdown" style="min-width: 180px;">
+		        <li><a class="dropdown-item text-white hover:bg-secondary" href="/profile">✏️ Edit Profile</a></li>
+		        <li><a class="dropdown-item text-white hover:bg-secondary" href="/change-password">🔐 Change Password</a></li>
+		    </ul>
+		</div>
+	</form>
+	
+
     <div class="ms-auto d-flex align-items-center">
     	<div class="text-white me-3 text-center" style="line-height: 1.2;">
 		    <a href="/returns" class="text-white text-decoration-none d-block">🧾Returns</a>
@@ -55,6 +74,7 @@
 	        </form>
 	    </div>
     </div>
+    
 </nav>
 
 <!-- 📂 Enhanced Category Bar -->

@@ -1,16 +1,18 @@
 package com.example.ecommerce.controller;
 
-import com.example.ecommerce.model.CartItem;
-import com.example.ecommerce.model.User;
-import com.example.ecommerce.repository.CartItemRepository;
-import com.example.ecommerce.repository.UserRepository;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
-import java.util.List;
+import com.example.ecommerce.model.CartItem;
+import com.example.ecommerce.model.User;
+import com.example.ecommerce.repository.CartItemRepository;
+import com.example.ecommerce.repository.UserRepository;
 
 @ControllerAdvice
 public class GlobalController {
@@ -38,4 +40,9 @@ public class GlobalController {
         User user = getUserFromDetails(userDetails);
         return cartItemRepository.countByUserAndSavedForLaterFalse(user);
     }
+    @GetMapping("/order/confirmation")
+    public String showOrderConfirmationPage() {
+        return "order_confirmation"; // Make sure you have this HTML file
+    }
+
 }

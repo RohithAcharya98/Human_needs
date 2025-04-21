@@ -1,5 +1,7 @@
 package com.example.ecommerce.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 import java.util.Optional;
 
@@ -49,10 +51,11 @@ public class CartController {
         double total = activeCart.stream()
                 .mapToDouble(item -> item.getProduct().getPrice() * item.getQuantity())
                 .sum();
+        BigDecimal totalAmount = new BigDecimal(total).setScale(2, RoundingMode.HALF_UP);
 
         //model.addAttribute("cart", activeCart);
         model.addAttribute("savedItems", savedItems);
-        model.addAttribute("total", total);
+        model.addAttribute("totalAmount", totalAmount);
         return "cart";
     }
 

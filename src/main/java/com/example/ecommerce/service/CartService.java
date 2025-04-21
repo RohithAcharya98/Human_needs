@@ -24,12 +24,7 @@ public class CartService {
     @Autowired
     private UserRepository userRepository;
 
-    public void addProduct(Product product, int quantity, String username) {
-        User user = userRepository.findByEmail(username);
-        CartItem item = new CartItem(user, product, quantity);
-        cartItemRepository.save(item);
-    }
-
+    
     public List<CartItem> getCart(String username) {
         User user = userRepository.findByEmail(username);
         return cartItemRepository.findByUser(user);
@@ -49,15 +44,20 @@ public class CartService {
                 .sum();
     }
 
-    public void addToCart(User user, Long productId) {
-        Product product = productRepository.findById(productId).orElseThrow();
-        CartItem item = cartItemRepository.findByUserAndProduct(user, product)
-                .orElse(new CartItem());
-        item.setUser(user);
-        item.setProduct(product);
-        item.setQuantity(item.getQuantity() + 1);
-        cartItemRepository.save(item);
+    public void addProduct(Product product, int quantity, String username) {
+        User user = userRepository.findByEmail(username);
+        
+        CartItem existingItem = cartItemRepository.findByUserAndProduct(user, product).orElse(null);
+
+        if (existingItem != null) {
+            existingItem.setQuantity(existingItem.getQuantity() + quantity);
+            cartItemRepository.save(existingItem);
+        } else {
+            CartItem newItem = new CartItem(user, product, quantity);
+            cartItemRepository.save(newItem);
+        }
     }
+
 
     public void increaseQuantity(User user, Long productId) {
         CartItem item = cartItemRepository.findByUserAndProduct(user, productRepository.findById(productId).orElseThrow()).orElseThrow();

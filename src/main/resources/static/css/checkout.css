@@ -1,0 +1,205 @@
+/* Reset some default styles for a clean slate */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styling */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f7f7f7;
+    color: #333;
+}
+
+/* Header Section */
+h1 {
+    font-size: 2.5rem;
+    color: #2d3748; /* Dark Gray */
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+/* Checkout Container */
+.checkout-container {
+    background-color: #ffffff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 600px;
+    margin: auto;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+}
+
+/* User Info Section */
+.user-info {
+    margin-bottom: 1.5rem;
+}
+
+.user-info p {
+    font-size: 1rem;
+    color: #4a5568;
+    margin-bottom: 0.5rem;
+}
+
+/* Payment Methods */
+.payment-methods {
+    margin-bottom: 2rem;
+}
+
+.payment-methods input[type="radio"] {
+    margin-right: 0.75rem;
+}
+
+.payment-methods label {
+    font-size: 1.125rem;
+    color: #4a5568;
+    font-weight: 600;
+}
+
+/* Button Styles */
+button {
+    background-color: #3182ce;
+    color: #ffffff;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 1.125rem;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2b6cb0;
+}
+
+/* Loading Spinner */
+#loader {
+    display: none;
+}
+
+#loader svg {
+    height: 30px;
+    width: 30px;
+    margin-top: 1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 640px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    .checkout-container {
+        padding: 1.5rem;
+    }
+
+    button {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+}
+.payment-option {
+    display: none;
+}
+
+.checkout-container {
+    margin-top: 30px;
+}
+
+.order-summary {
+    border: 1px solid #ddd;
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.order-summary h4 {
+    margin-bottom: 15px;
+}
+
+.coupon-section {
+    margin-top: 20px;
+}
+
+/* Glossy Finish Effect */
+.glossy {
+    background: linear-gradient(145deg, #ff9a8b, #ff6a88);
+    box-shadow: 8px 8px 16px #c4c4c4, -8px -8px 16px #ffffff;
+}
+.card {
+    transition: all 0.3s ease;
+}
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+.input-field:focus {
+    border-color: #ff6a88;
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 106, 136, 0.5);
+}  
+
+/* Styling for Payment Options */
+.payment-option input {
+    display: none;
+}
+
+.payment-option input + label {
+    cursor: pointer;
+    padding: 12px 24px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+    background-color: #fff;
+    transition: all 0.3s ease;
+}
+
+.payment-option input:checked + label {
+    border-color: #3182ce;
+    background-color: #e3f4ff;
+}
+
+.payment-option input:checked + label:hover {
+    background-color: #d1e7f7;
+}
+
+/* Styling for Custom Payment Option Labels */
+.payment-option label:hover {
+    background-color: #f7fafc;
+}
+
+.payment-option label svg {
+    margin-right: 8px;
+}
+
+/* Card Details Form Styling */
+#card-details {
+    display: none;
+    margin-top: 2rem;
+}
+
+#card-details .form-group {
+    margin-bottom: 1.5rem;
+}
+
+#card-details .form-group input {
+    padding: 10px;
+    width: 100%;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+    margin-top: 5px;
+}
+
+/* Show Card Details when 'Credit Card' is selected */
+.payment-option #credit-card:checked + #card-details {
+    display: block;
+}
+

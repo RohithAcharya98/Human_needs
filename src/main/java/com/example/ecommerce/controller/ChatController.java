@@ -125,8 +125,4 @@ public class ChatController {
 
 	    return (int) (((double) matches / wordsB.length) * 100);
 	}
-
-
-
-
 }
